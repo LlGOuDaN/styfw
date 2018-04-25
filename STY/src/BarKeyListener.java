@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -7,10 +8,12 @@ import static java.awt.image.ImageObserver.WIDTH;
 public class BarKeyListener implements KeyListener {
     WorldComponent worldComponent;
     Bar bar;
+    JFrame frame;
 
-    public BarKeyListener(WorldComponent worldComponent) {
+    public BarKeyListener(WorldComponent worldComponent, JFrame frame) {
         this.worldComponent = worldComponent;
         bar = worldComponent.getBar();
+        this.frame = frame;
     }
 
     @Override
@@ -32,6 +35,10 @@ public class BarKeyListener implements KeyListener {
                 case KeyEvent.VK_RIGHT:
                     bar.moveRight();
                     break;
+                case KeyEvent.VK_R:
+                    WorldComponent component = new WorldComponent(frame);
+                    frame.removeAll();
+                    frame.add(component);
                 default:
                     break;
             }
